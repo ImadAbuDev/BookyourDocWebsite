@@ -1,0 +1,86 @@
+<!Booking Buttons and Textfields,Selectors for Input>
+
+<mat-card align="center">
+
+  <h3>Welcome to the booking page here you can book your next appointment with your doctor!</h3>
+  <img align="center" src="assets/icon_scope.png" alt="Avatar" width="7%" maxlength="7%"/>
+</mat-card>
+<mat-horizontal-stepper [linear]="true" #stepper>
+
+  <mat-step>
+    <mat-card align="center">
+      <h4>Please choose your Doctor</h4>
+      <img align="center" src="assets/icon_doctor.png" alt="Avatar" width="5%" maxlength="5%"/>
+      &#160; &#160;
+      <mat-form-field>
+        <mat-select placeholder="Choose your Doctor" [formControl]="doctorControl" required>
+          <mat-option>--</mat-option>
+          <mat-option *ngFor="let doctor of doctors" [value]="doctor">
+            {{doctor.name + ', ' +doctor.field}}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="doctorControl.hasError('required')">Please choose a doctor</mat-error>
+        <mat-hint>{{doctorControl.value?.field}}</mat-hint>
+      </mat-form-field>
+      <div>
+        <br>
+        <br>
+        <button (click)="goForward(stepper)" mat-flat-button color="primary">Next</button>
+      </div>
+    </mat-card>
+  </mat-step>
+
+  <mat-step>
+    <mat-card align="center">
+      <h4>Please choose a free timeslot:</h4>
+      <ng-template matStepLabel>Choose free slots</ng-template>
+      <img align="center" src="assets/icon_time.png" alt="Avatar" width="5%" maxlength="5%"/>
+      &#160; &#160;
+      <mat-form-field>
+        <mat-select placeholder="Choose your Timeslot" [formControl]="doctorslotsControl" required>
+          <mat-option>--</mat-option>
+          <mat-option *ngFor="let slot of doctorslots?.slots" [value]="slot">
+            {{convertshort(slot?.state) + ' '+ changedateformat(slot?.start)}}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="doctorslotsControl.hasError('required')">Please choose a timeslot</mat-error>
+        <mat-hint>{{convert(doctorslotsControl.value?.state)}}</mat-hint>
+        <h3>{{error}}</h3>
+      </mat-form-field>
+      <div>
+        <br>
+        <br>
+        <button (click)="goBack(stepper)" mat-flat-button color="primary">Back</button>
+        &#160; &#160;
+        <button (click)="goForward2(stepper)" mat-flat-button color="primary" mat-button>Book</button>
+      </div>
+    </mat-card>
+  </mat-step>
+
+
+  <mat-step align="center">
+    <mat-card align="center">
+      <br>
+      <h3>You booked successfully:</h3>
+      <img align="center" src="assets/icon_booked.png" alt="Avatar" width="7%" maxlength="7%"/>
+
+    </mat-card>
+    <br>
+    <mat-card align="center">
+      <h4>Your Doctor: {{dis_name}}</h4>
+      <h4>His Field: {{dis_field}}</h4>
+      <h4>Start: {{dis_start}}</h4>
+      <h4>End: {{dis_end}}</h4>
+      <h4>ID: {{dis_id}}</h4>
+      <img align="center" src="assets/icon_hook.png" alt="Avatar" width="3%" maxlength="3%"/>
+      <div>
+        <br>
+        <br>
+        <button (click)="goForward3()" mat-flat-button color="primary">Finish</button> &#160; &#160;
+        <button (click)="beginning(stepper)" mat-flat-button color="primary" mat-button>Book another slot</button>
+      </div>
+
+    </mat-card>
+
+  </mat-step>
+</mat-horizontal-stepper>

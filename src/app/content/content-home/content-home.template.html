@@ -1,0 +1,47 @@
+<mat-card align="center">
+
+  <mat-card-title><h2>Dashboard</h2></mat-card-title>
+  <img align="center" src="assets/icon_booked.png" alt="Avatar" width="7%" maxlength="7%"/>
+  <mat-card-subtitle><h3>Welcome to your Dashboard! </h3></mat-card-subtitle>
+</mat-card>
+<mat-card align="center">
+  <mat-card-subtitle><h3>
+    Here you can book your see your upcoming appointments and you can book appointments by clicking the book button
+    below!</h3></mat-card-subtitle>
+</mat-card>
+
+<br>
+<mat-card *ngIf="displayDocLink" align="center">
+  <mat-card-subtitle><h3>
+    <a routerLink="/doctor">Management for Doc's</a> </h3></mat-card-subtitle>
+</mat-card>
+<br>
+<br>
+<mat-card align="center">
+
+
+  <mat-card-title><h3>Overview of your Appointments</h3></mat-card-title>
+  <img align="center" src="assets/icon_time.png" alt="Avatar" width="5%" maxlength="5%"/>
+  <br> <br> <br>
+  <div class="mat-table">
+    <div class="mat-header-row">
+      <div class="mat-header-cell"><h3>Start</h3></div>
+      <div class="mat-header-cell"><h3>End</h3></div>
+      <div class="mat-header-cell"><h3>Doctor</h3></div>
+    </div>
+    <div class="mat-row" *ngFor="let slot of slots">
+      <div class="mat-cell">{{changedateformat(slot.start)}}</div>
+      <div class="mat-cell">{{changedateformat(slot.end)}}</div>
+      <div class="mat-cell">{{getdocname(slot.docid)}}</div>
+    </div>
+  </div>
+</mat-card>
+
+
+<mat-card align="center">
+  <mat-card-actions>
+    <a routerLink="/book" class="button-row">
+      <button mat-flat-button color="primary" align="center">Book an appointment with your Doctor</button>
+    </a>
+  </mat-card-actions>
+</mat-card>

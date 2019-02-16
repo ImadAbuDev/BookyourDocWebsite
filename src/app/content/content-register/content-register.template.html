@@ -1,0 +1,100 @@
+<form [formGroup]="userRegistrationForm" novalidate>
+  <!Declaring Material Card with Register Components>
+  <mat-card>
+    <mat-card-subtitle><h1>Register your Book your Doc Account by filling in the information below</h1>
+    </mat-card-subtitle>
+
+    <mat-card>
+      <mat-card-subtitle>Please Select Your Role</mat-card-subtitle>
+      <p>
+        <!Radio Button Group for choice of acc Type>
+
+        <mat-radio-group #rGroup class="radio-group" formControlName="type">
+          <mat-radio-button class="radio-button" value="DOCTOR" radioGroup="rGroup">DOCTOR</mat-radio-button>
+          &#160; &#160;
+          <mat-radio-button class="radio-button" value="PATIENT" radioGroup="rGroup">PATIENT</mat-radio-button>
+        </mat-radio-group>
+    </mat-card>
+    <p>
+      <mat-card>
+        <mat-card-subtitle>Select your Gender</mat-card-subtitle>
+
+        <!Radio Button Group for choice of Gender Type>
+
+        <mat-radio-group #rGroup class="radio-group" formControlName="gender">
+          <mat-radio-button class="radio-button" value="FEMALE" radioGroup="rGroup">FEMALE</mat-radio-button>
+          <br><br>
+          <mat-radio-button class="radio-button" value="MALE" radioGroup="rGroup">MALE</mat-radio-button>
+          <br><br>
+          <mat-radio-button class="radio-button" value="OTHER" radioGroup="rGroup">OTHER</mat-radio-button>
+        </mat-radio-group>
+      </mat-card>
+    </p>
+
+    <!Material Card with all Register InputTypes>
+    <mat-card>
+
+      <mat-card-subtitle>Please put in your account information</mat-card-subtitle>
+      <div formGroupName="nameGroup">
+        <mat-form-field>
+          <input matInput placeholder="First name" type="text" formControlName="firstName">
+          <mat-error>
+            {{errors.Name}} <!errors.name call a function that checks if the input type of name and email is right>
+          </mat-error>
+        </mat-form-field>
+        <br>
+        <mat-form-field>
+          <input matInput placeholder="Last name" type="text" formControlName="lastName">
+          <mat-error>
+            {{errors.Name}}
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div formGroupName="emailGroup">
+        <mat-form-field>
+          <input matInput placeholder="Email address" type="email" formControlName="email">
+          <mat-error>
+            {{errors.email}} <!errors.email call a function that checks if the input type of name and email is right>
+          </mat-error>
+        </mat-form-field>
+        &#160; &#160;
+        <mat-form-field>
+          <input matInput placeholder="Confirm email address" type="email" formControlName="confirmEmail"
+                 [errorStateMatcher]="confirmValidParentMatcher">
+          <mat-error>
+            {{errors.confirmEmail}} <!errors.confirmmail checks if the two emails are the same>
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div formGroupName="passwordGroup">
+
+        <mat-form-field>
+          <input matInput placeholder="Password" type="password" formControlName="password">
+          <mat-error>
+            {{errors.password}} <!errors.password checks password>
+          </mat-error>
+        </mat-form-field>
+        &#160; &#160;
+        <mat-form-field>
+          <input matInput placeholder="Confirm password" type="password" formControlName="confirmPassword"
+                 [errorStateMatcher]="confirmValidParentMatcher">
+          <mat-error>
+            {{errors.confirmPassword}}
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <br>
+      <mat-checkbox formControlName="agreement">I agree with the <a href="agb">terms and conditions</a> according to
+        privacy policy
+      </mat-checkbox>
+      &#160; &#160;
+    </mat-card>
+    <br>
+    <!on Button click calls register function for API Services>
+    <button mat-raised-button [disabled]="userRegistrationForm.invalid" (click)="register()">Register</button>
+    &#160; &#160;
+    <button routerLink="/" mat-flat-button color="primary" type="submit" style="width:5%">Back</button>
+  </mat-card>
+</form>

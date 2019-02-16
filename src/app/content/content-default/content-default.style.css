@@ -1,0 +1,53 @@
+/*Last Time edited 29.10.18 10:00 by Imad #22*/
+
+/* deklaring parameterclasses like the width and length for buttons,textfield and forms*/
+
+.button-row button,
+.button-row a {
+  margin-right: 8px;
+  min-height: 60px;
+  min-width: 140px;
+}
+
+.img-valign {
+  vertical-align: middle;
+  margin-bottom: 0.75em;
+}
+
+.text2 {
+  font-size: 24px;
+}
+
+.image {
+
+  background-image: url('bg.png');
+
+}
+
+.container {
+  position: relative;
+  text-align: center;
+  color: white;
+}
+
+.centered {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.cal {
+  min-width: 20px;
+  min-height: 20px;
+}
+
+h1 {
+  text-shadow: 2px 2px #dddddd;
+}
+
+@media only screen and (max-width: 768px) {
+  b {
+    font-size: 20px;
+  }
+}

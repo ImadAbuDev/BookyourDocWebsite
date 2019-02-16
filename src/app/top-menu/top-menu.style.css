@@ -1,0 +1,39 @@
+/*Last Time edited 29.10.18 10:00 by Imad #21*/
+
+/* deklaring parameterclasses like the width and length for buttons and textfield*/
+
+.header-icon {
+  padding: 0 14px;
+}
+
+.header-spacer {
+  flex: 1 1 auto;
+}
+
+a {
+  color: inherit; /* blue colors for links too */
+  text-decoration: inherit; /* no underline */
+}
+
+he {
+  text-shadow: 2px 2px #000000;
+}
+
+.container {
+  position: relative;
+  text-align: center;
+  color: white;
+  width: auto;
+}
+
+@media only screen and (max-width: 768px) {
+  b {
+    font-size: 20px;
+  }
+}
+
+@media only screen and (max-width: 320px) {
+  b {
+    font-size: 10px;
+  }
+}

@@ -1,0 +1,122 @@
+<mat-card align="center">
+
+  <h3>Welcome! Here you can create an appointment for your patients!</h3>
+  <img align="center" src="assets/icon_scope.png" alt="Avatar" width="7%" maxlength="7%"/>
+</mat-card>
+
+<mat-horizontal-stepper [linear]="true" #stepper>
+  <mat-step>
+
+    <mat-card align="center">
+      <h4>Please choose a doctor:</h4>
+      <img align="center" src="assets/icon_doctor.png" alt="Avatar" width="5%" maxlength="5%"/>
+      &#160; &#160;
+      <ng-template matStepLabel>Choose your Doctor</ng-template>
+      <mat-form-field>
+        <mat-select placeholder="Choose your Doctor" [formControl]="doctorControl" required>
+          <mat-option>--</mat-option>
+          <mat-option *ngFor="let doctor of doctors" [value]="doctor">
+            {{doctor.name + ', ' + doctor.field}}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="doctorControl.hasError('required')">Please choose a doctor</mat-error>
+        <mat-hint>{{doctorControl.value?.field}}</mat-hint>
+      </mat-form-field>
+      <div>
+        <br>
+        <br>
+        <button (click)="goForward(stepper)" mat-flat-button color="primary">Next</button>
+      </div>
+    </mat-card>
+  </mat-step>
+  <mat-step>
+    <h4>Please create a new timeslot:</h4>
+    <mat-card align="center">
+      <ng-template matStepLabel>Create a new slot</ng-template>
+      <img align="center" src="assets/icon_time.png" alt="Avatar" width="5%" maxlength="5%"/>
+      &#160; &#160; <br> <br>
+      <mat-form-field class="example-full-width">
+        <input matInput [matDatepickerFilter]="myFilter" [matDatepicker]="picker" [formControl]="dateslotControl"
+               placeholder="Choose a date">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+      <div>
+      </div>
+      <mat-form-field>
+
+        <mat-select placeholder="Start hour" [formControl]="startControlhour" required>
+          <mat-option>--</mat-option>
+          <mat-option *ngFor="let hour of hours" [value]="hour">
+            {{hour.hour}}
+          </mat-option>
+          <br>
+        </mat-select>
+        <mat-error *ngIf="startControlhour.hasError('required')">Please choose the start time(hour)</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-select placeholder="Start minute" [formControl]="startControlminute" required>
+          <mat-option>--</mat-option>
+          <mat-option *ngFor="let minute of minutes" [value]="minute">
+            {{minute.minute}}
+          </mat-option>
+        </mat-select>
+        <br>
+        <mat-error *ngIf="startControlminute.hasError('required')">Please choose the start time(minute)</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-select placeholder="End hour" [formControl]="endControlhour" required>
+          <mat-option>--</mat-option>
+          <mat-option *ngFor="let hour of hours" [value]="hour">
+            {{hour.hour}}
+          </mat-option>
+        </mat-select>
+        <br>
+        <mat-error *ngIf="endControlhour.hasError('required')">Please choose the end time(hour)</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+
+        <mat-select placeholder="End minute" [formControl]="endControlminute" required>
+
+          <mat-option>--</mat-option>
+          <mat-option *ngFor="let minute of minutes" [value]="minute">
+            {{minute.minute}}
+          </mat-option>
+        </mat-select>
+
+        <mat-error *ngIf="endControlminute.hasError('required')">Please choose the end time(minute)</mat-error>
+      </mat-form-field>
+
+      <div>
+        <button (click)="goBack(stepper)" mat-flat-button color="primary">Back</button>
+        &#160; &#160;
+        <button (click)="goForward2(stepper)" mat-flat-button color="primary">Register Slot</button>
+      </div>
+    </mat-card>
+  </mat-step>
+  <mat-step>
+    <mat-card align="center">
+
+      <br>
+      <h3>You added successfully a Timeslot:</h3>
+      <img align="center" src="assets/icon_booked.png" alt="Avatar" width="7%" maxlength="7%"/>
+
+    </mat-card>
+    <br>
+
+    <mat-card align="center">
+
+      <h3>Your Doctor: {{dis_name}}</h3>
+      <h3>His Field: {{dis_field}}</h3>
+      <h3>Start: {{dis_start}}</h3>
+      <h3>End: {{dis_end}}</h3>
+      <img align="center" src="assets/icon_hook.png" alt="Avatar" width="3%" maxlength="3%"/>
+      <div>
+        <br>
+        <button (click)="goForward3(stepper)" mat-flat-button color="primary">Finish</button>
+        &#160; &#160;
+        <button (click)="beginning(stepper)" mat-flat-button color="primary">Create another slot</button>
+      </div>
+    </mat-card>
+  </mat-step>
+</mat-horizontal-stepper>

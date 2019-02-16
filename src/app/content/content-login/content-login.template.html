@@ -1,0 +1,54 @@
+<!Last Time edited 29.10.18 10:00 by Imad #22>
+
+<!Login Form implementing Buttons and Textfields for Input (EMAIL&PASSWORD>
+
+<!User Registration Form and declaring Material Card>
+<form [formGroup]="userRegistrationForm" novalidate>
+  <div formGroupName="loginGroup">
+    <mat-card align="center">
+      <mat-card-title>
+        <h3>Welcome to Bookyourdoc! </h3>   <br>
+
+
+        <!Inserting Icon Avatar>
+        <img align="img-valign" src="assets/avatar.png" alt="Avatar" width="10%" maxlength="10%"/>
+        <h5>Please Login with your Email and Password</h5>
+      </mat-card-title>
+      <mat-form-field style="width:30%">
+
+
+        <!Declaring Input fields for Email and Password>
+        <input align="center " matInput placeholder="Email" type="email" formControlName="email">
+        <mat-error>
+          {{errors.email}}
+        </mat-error>
+      </mat-form-field>
+      <br/>
+      <mat-form-field style="width:30%">
+        <input matInput placeholder="Password" type="password" formControlName="password">
+        <mat-error>
+          {{errors.password}}
+        </mat-error>
+      </mat-form-field>
+      <br/>
+      <br/>
+      <button mat-flat-button color="primary" type="submit" mat-raised-button [disabled]="userRegistrationForm.invalid"
+              (click)="login()" style="width:30%">Login
+      </button>
+      <br/>
+      <br/>
+      <!Routerlink="/" describes on click Button action>
+      <button routerLink="/" mat-flat-button color="primary" type="submit" style="width:30%">Back</button>
+
+      <br/>
+    </mat-card>
+  </div>
+
+  <p>
+    &#160; &#160;
+  </p>
+
+
+</form>
+
+

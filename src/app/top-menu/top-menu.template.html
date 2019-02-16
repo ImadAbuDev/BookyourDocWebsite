@@ -1,0 +1,29 @@
+<!Last Time edited 29.10.18 10:00 by Imad #22>
+<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimal-ui"/>
+
+
+<!declaring toolbar for components>
+<div flex="13" class="container" layout="column" flex-gt-sm="3">
+  <mat-toolbar color="primary" class="container" layout="column" flex-gt-sm="66">
+    <mat-toolbar-row>
+
+      <img class="img-valign" src="assets/icon_med2.png" alt="" width="30px" maxlength="30px"/>
+      <span><a routerLink="/"><h1>&#160;       BOOK YOUR DOC</h1>
+
+
+      </a></span>
+
+
+      <span class="header-spacer"></span>
+      <!inserting icons into toolbar (click) is calling the function which starts by the click on the icon>
+      <font size="2" class="he"> {{greetings}}</font>
+      <mat-icon class="header-icon" matTooltip="Calendar overview" (click)="calendaroverview()">calendar_today
+      </mat-icon>
+      <mat-icon class="header-icon" *ngIf="DataSvc.authenticated" matTooltip="Logout" (click)="loginlogout()">
+        exit_to_app
+      </mat-icon>
+      <mat-icon class="header-icon" matTooltip="Support" (click)="support()" routerLink="/support">help</mat-icon>
+    </mat-toolbar-row>
+
+  </mat-toolbar>
+</div>
